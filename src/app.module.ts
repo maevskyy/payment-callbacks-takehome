@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
+import { CallbacksModule } from './callbacks/callbacks.module';
 import { CommonModule } from './common/common.module';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware';
 import { IdentityModule } from './identity/identity.module';
@@ -24,6 +25,7 @@ import { PersistenceModule } from './persistence/persistence.module';
     CommonModule,
     PersistenceModule,
     IdentityModule,
+    CallbacksModule,
   ],
   controllers: [AppController],
 })

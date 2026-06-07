@@ -15,6 +15,9 @@ export class RawEventEntity {
   brandId!: string;
 
   @Column({ type: 'varchar' })
+  kind!: 'psp' | 'gsp';
+
+  @Column({ type: 'varchar' })
   provider!: string;
 
   @Column({ type: 'jsonb' })
