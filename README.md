@@ -11,6 +11,7 @@ For the high-level overview and the rules the code must follow, start with
 | Document | What's inside |
 |---|---|
 | [CLAUDE.md](./CLAUDE.md) | Project overview, hard invariants, project map |
+| [docs/GLOSSARY.md](./docs/GLOSSARY.md) | Domain terms in plain language (PSP, idempotency, tenant…) |
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | Module boundaries, data model, webhook lifecycle |
 | [docs/DECISIONS.md](./docs/DECISIONS.md) | Design decisions and trade-offs (ADR format) |
 | [docs/API.md](./docs/API.md) | Endpoints with request/response examples |

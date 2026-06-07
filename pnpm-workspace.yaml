@@ -1,0 +1,8 @@
+allowBuilds:
+  '@nestjs/core': true
+verifyDepsBeforeRun: false
+# pnpm v11 reads build-script approvals here (the package.json "pnpm" field is
+# no longer honored). Allowing @nestjs/core's postinstall removes the
+# ERR_PNPM_IGNORED_BUILDS warning that otherwise fails the pre-run deps check.
+onlyBuiltDependencies:
+  - '@nestjs/core'

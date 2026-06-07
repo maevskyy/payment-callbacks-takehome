@@ -53,6 +53,7 @@ These are enforced rules, not suggestions. Any code change must respect them.
 
 ## Where to look next
 
+- **Domain terms in plain language** → [docs/GLOSSARY.md](./docs/GLOSSARY.md)
 - **Architecture, data model, webhook lifecycle** → [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 - **Design decisions & trade-offs (ADR)** → [docs/DECISIONS.md](./docs/DECISIONS.md)
 - **Endpoints with request/response examples** → [docs/API.md](./docs/API.md)

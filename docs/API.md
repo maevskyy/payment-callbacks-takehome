@@ -17,8 +17,16 @@ For data model and lifecycle, see
 | POST | `/auth/register` | no | Create a user under a brand |
 | POST | `/auth/login` | no | Authenticate, receive a JWT |
 | GET | `/profile/me` | yes | Return the current user's profile |
-| POST | `/webhooks/psp/:provider` | signature/secret | Receive a PSP callback |
-| POST | `/webhooks/gsp/:provider` | signature/secret | Receive a GSP callback |
+| POST | `/webhooks/psp/:provider` | tenant header | Receive a PSP callback |
+| POST | `/webhooks/gsp/:provider` | tenant header | Receive a GSP callback |
+
+> **Tenant context for webhooks.** Webhooks are not authenticated with a user
+> JWT — they come from the provider, not a logged-in user. The owning tenant is
+> resolved from the `X-Brand-Id` header (in a real integration this would instead
+> be derived from the provider's signed payload / per-brand webhook secret). The
+> resolved `brandId` scopes every storage query, exactly like JWT-derived tenant
+> context on user routes. A missing or invalid `X-Brand-Id` yields a structured
+> `400`/`403` (see [Error format](#error-format)).
 
 ---
 
