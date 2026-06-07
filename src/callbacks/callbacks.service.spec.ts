@@ -66,7 +66,7 @@ describe('CallbacksService', () => {
       service.receive({
         kind: 'gsp',
         provider: 'acme',
-        payload: { eventId: 'evt_1' },
+        payload: { eventId: 'evt_1', type: 'settlement.completed' },
       }),
     ).resolves.toEqual({ status: 'duplicate', eventId: 'evt_1' });
 

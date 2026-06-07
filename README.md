@@ -31,33 +31,32 @@ For the high-level overview and the rules the code must follow, start with
 
 ## Setup & run
 
-> The application code is not implemented yet — the commands below describe the
-> intended local run flow (a single command to bring everything up).
-
 ```bash
 # 1. Install dependencies
-npm install
+pnpm install
 
 # 2. Copy environment defaults
 cp .env.example .env
 
 # 3. Bring up app + database
-docker-compose up --build
+docker compose up --build
 ```
 
 The API will be available at `http://localhost:3000`.
+Swagger UI will be available at `http://localhost:3000/docs`.
 
 ## Tests
 
 ```bash
-npm test          # unit tests
-npm run test:e2e  # integration tests (idempotency, tenant isolation)
+pnpm test      # unit tests
+pnpm test:e2e  # integration tests (idempotency, tenant isolation, webhook contract)
 ```
 
-Planned test coverage:
-- a unit test for callback use-case logic;
-- an integration test for callback idempotency (duplicate is deduplicated);
-- a tenant-leakage test (Brand A cannot access Brand B data).
+Covered behaviours:
+- callback use-case logic;
+- callback idempotency (duplicate is deduplicated);
+- tenant isolation (Brand A cannot access Brand B data);
+- webhook payload contract validation.
 
 ## Environment variables
 

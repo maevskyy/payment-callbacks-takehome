@@ -1,5 +1,6 @@
 allowBuilds:
   '@nestjs/core': true
+  '@scarf/scarf': false
 verifyDepsBeforeRun: false
 # pnpm v11 reads build-script approvals here (the package.json "pnpm" field is
 # no longer honored). Allowing @nestjs/core's postinstall removes the

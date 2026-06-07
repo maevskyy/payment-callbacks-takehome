@@ -107,6 +107,11 @@ export class CallbacksService {
     ) {
       throw new UnprocessableEntityException('Webhook payload must be a JSON object');
     }
+
+    const body = payload as Record<string, unknown>;
+    if (typeof body.type !== 'string' || body.type.trim().length === 0) {
+      throw new UnprocessableEntityException('Webhook payload must include type');
+    }
   }
 
   private getRequiredBrandId(): string {

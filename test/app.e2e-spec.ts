@@ -2,6 +2,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { DataSource } from 'typeorm';
 import { AppModule } from '../src/app.module';
+import { setupOpenApi } from '../src/openapi';
 
 interface JsonResponse<T> {
   status: number;
@@ -42,6 +43,7 @@ describe('App e2e', () => {
 
     app = moduleRef.createNestApplication();
     app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+    setupOpenApi(app);
     await app.init();
     await app.listen(0);
 
@@ -92,6 +94,27 @@ describe('App e2e', () => {
     expect(count).toBe(1);
   });
 
+  it('validates the webhook payload contract', async () => {
+    const valid = await post<CallbackBody>(
+      '/webhooks/psp/stripe',
+      { eventId: 'evt_contract_valid', type: 'payment.succeeded' },
+      { 'X-Brand-Id': 'brand-a' },
+    );
+    const malformed = await post<{ statusCode: number }>(
+      '/webhooks/psp/stripe',
+      { eventId: 'evt_contract_invalid' },
+      { 'X-Brand-Id': 'brand-a' },
+    );
+
+    expect(valid.status).toBe(200);
+    expect(valid.body).toEqual({
+      status: 'accepted',
+      eventId: 'evt_contract_valid',
+    });
+    expect(malformed.status).toBe(422);
+    expect(malformed.body.statusCode).toBe(422);
+  });
+
   it('keeps same callback key isolated between brands', async () => {
     const payload = { eventId: 'evt_shared', type: 'settlement.completed' };
 
@@ -136,6 +159,13 @@ describe('App e2e', () => {
     expect(profile.body).toEqual(brandA.body);
     expect(profile.body.id).not.toBe(brandB.body.id);
     expect(profile.body.brandId).toBe('brand-a');
+  });
+
+  it('serves Swagger UI', async () => {
+    const response = await fetch(`${appUrl}/docs`);
+
+    expect(response.status).toBe(200);
+    expect(await response.text()).toContain('Swagger UI');
   });
 
   async function post<T>(
