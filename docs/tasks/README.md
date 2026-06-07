@@ -12,6 +12,6 @@ goal, scope, acceptance criteria, and links to the relevant docs. An AI assistan
 | 4 | [task_tests_4.md](./task_tests_4.md) — unit + integration + tenant-leakage tests | 2, 3 |
 | 5 | [task_nice_to_have_5.md](./task_nice_to_have_5.md) — OpenAPI, compose, contract test | 2, 3 |
 
-Context for every task: [../../CLAUDE.md](../../CLAUDE.md) (invariants),
-[../ARCHITECTURE.md](../ARCHITECTURE.md), [../API.md](../API.md),
-[../DECISIONS.md](../DECISIONS.md).
+Context for every task: [../../AGENTS.md](../../AGENTS.md),
+[../../CLAUDE.md](../../CLAUDE.md), [../ARCHITECTURE.md](../ARCHITECTURE.md),
+[../API.md](../API.md), [../DECISIONS.md](../DECISIONS.md).

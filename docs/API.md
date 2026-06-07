@@ -5,7 +5,8 @@ Base URL: `http://localhost:3000`
 All requests and responses are JSON. Protected endpoints require a
 `Authorization: Bearer <token>` header. Every request may include an
 `X-Correlation-Id` header; if omitted, the server generates one and echoes it
-back in the response (see [CLAUDE.md](../CLAUDE.md#hard-invariants-never-violate)).
+back in the response (see [AGENTS.md](../AGENTS.md) and
+[CLAUDE.md](../CLAUDE.md)).
 
 For data model and lifecycle, see
 [ARCHITECTURE.md](./ARCHITECTURE.md).

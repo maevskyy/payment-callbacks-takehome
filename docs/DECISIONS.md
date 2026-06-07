@@ -47,6 +47,13 @@ table allows revocation and an audit trail. Trade-off: a DB lookup on protected
 routes if we check revocation, versus pure-stateless JWT; acceptable for this
 scope.
 
+The token is signed/verified with a small hand-rolled HS256 implementation
+(Node `crypto`) to avoid an extra dependency for this scope. Known trade-offs
+versus a hardened library: it does not pin the header `alg` and uses a plain
+signature comparison rather than a constant-time one. The signature is always
+recomputed as HMAC-SHA256, so an `alg: none` forgery still fails; for production
+we would switch to a vetted library (`@nestjs/jwt`).
+
 ---
 
 ## ADR-4: Idempotency via a dedicated `idempotency_keys` table
@@ -90,6 +97,14 @@ a filter on every query inside `persistence`.
 and it is verifiable with a tenant-leakage test. Trade-off: every repository
 method must thread `brandId`; centralizing DB access in `persistence` keeps this
 consistent.
+
+The tenant is sourced differently per entry point. User routes derive `brandId`
+from the verified JWT, so it is trusted. Webhooks have no user session, so the
+stub reads `brandId` from the `X-Brand-Id` header — which is **not authenticated**
+and a caller could spoof. This is an accepted MVP simplification: in a real
+integration the tenant would be resolved from the provider's signed payload /
+per-brand webhook secret. The isolation boundary itself (the `persistence`
+filter) is identical either way; only the trust of the tenant *source* differs.
 
 ---
 

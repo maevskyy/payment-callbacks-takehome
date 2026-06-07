@@ -32,7 +32,7 @@ deduplicate, and persist the raw event — with no balance side effects.
 
 - Webhook lifecycle (mermaid) → [../ARCHITECTURE.md](../ARCHITECTURE.md#webhook-lifecycle)
 - Endpoints & examples → [../API.md](../API.md#post-webhookspspprovider)
-- Invariants → [../../CLAUDE.md](../../CLAUDE.md#hard-invariants-never-violate)
+- Invariants → [../../AGENTS.md](../../AGENTS.md), [../../CLAUDE.md](../../CLAUDE.md)
 - Decisions → [../DECISIONS.md](../DECISIONS.md) (ADR-4, ADR-5, ADR-6)
 
 ## Out of scope

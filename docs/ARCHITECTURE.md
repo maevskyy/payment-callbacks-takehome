@@ -1,8 +1,8 @@
 # Architecture
 
 This document describes module boundaries, the data model, and the webhook
-lifecycle. For the rules that this design enforces, see the invariants in
-[../CLAUDE.md](../CLAUDE.md#hard-invariants-never-violate).
+lifecycle. For agent-facing entry points, see [../AGENTS.md](../AGENTS.md) and
+[../CLAUDE.md](../CLAUDE.md).
 
 ## Module boundaries
 
@@ -25,12 +25,14 @@ Four tables, kept minimal.
 |---|---|---|
 | `users` | Registered users, scoped to a brand. | `id`, `brandId`, `email`, `passwordHash` |
 | `sessions` | Issued JWT sessions (supports revocation). | `id`, `userId`, `token`, `expiresAt` |
-| `raw_events` | Raw, unprocessed webhook payloads (outbox-like). | `id`, `brandId`, `provider`, `payload`, `receivedAt` |
+| `raw_events` | Raw, unprocessed webhook payloads (outbox-like). | `id`, `brandId`, `kind`, `provider`, `payload`, `receivedAt` |
 | `idempotency_keys` | Keys of already-processed callbacks, for deduplication. | `id`, `brandId`, `key`, `createdAt` |
 
 Notes:
 - `raw_events.payload` stores the webhook body verbatim. A later ledger process
   reads from here — the intake path itself does no business processing.
+- `raw_events.kind` records which adapter received the event (`psp` or `gsp`),
+  so a consumer can tell the two intake channels apart without parsing payloads.
 - `idempotency_keys` is scoped by `brandId`, so the same provider key under two
   brands does not collide.
 
@@ -77,4 +79,4 @@ sequenceDiagram
 Every incoming request is assigned a correlation/request id by `common`
 middleware. The id is included in all log lines for that request, so a single
 callback can be traced end to end. See
-[../CLAUDE.md](../CLAUDE.md#hard-invariants-never-violate).
+[../AGENTS.md](../AGENTS.md) and [../CLAUDE.md](../CLAUDE.md).

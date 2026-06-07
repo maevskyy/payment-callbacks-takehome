@@ -3,14 +3,16 @@
 A small NestJS backend demonstrating identity basics, safe PSP/GSP webhook
 handling, and readiness for a future ledger integration.
 
-For the high-level overview and the rules the code must follow, start with
-[CLAUDE.md](./CLAUDE.md).
+For AI-agent entry points, use [AGENTS.md](./AGENTS.md) for Codex-style agents
+or [CLAUDE.md](./CLAUDE.md) for Claude-style agents. Human reviewers can start
+with this README and follow the documentation map below.
 
 ## Documentation
 
 | Document | What's inside |
 |---|---|
-| [CLAUDE.md](./CLAUDE.md) | Project overview, hard invariants, project map |
+| [AGENTS.md](./AGENTS.md) | Codex-style agent entry point |
+| [CLAUDE.md](./CLAUDE.md) | Claude-style agent entry point |
 | [docs/GLOSSARY.md](./docs/GLOSSARY.md) | Domain terms in plain language (PSP, idempotency, tenant…) |
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | Module boundaries, data model, webhook lifecycle |
 | [docs/DECISIONS.md](./docs/DECISIONS.md) | Design decisions and trade-offs (ADR format) |

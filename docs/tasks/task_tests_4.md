@@ -21,7 +21,7 @@ callback idempotency, and tenant isolation.
 
 ## References
 
-- Invariants → [../../CLAUDE.md](../../CLAUDE.md#hard-invariants-never-violate)
+- Invariants → [../../AGENTS.md](../../AGENTS.md), [../../CLAUDE.md](../../CLAUDE.md)
 - Architecture → [../ARCHITECTURE.md](../ARCHITECTURE.md)
 - Run commands → [../../README.md](../../README.md#tests)
 

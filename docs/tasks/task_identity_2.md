@@ -27,7 +27,7 @@ their brand.
 ## References
 
 - Endpoints & examples → [../API.md](../API.md)
-- Invariants (tenant isolation) → [../../CLAUDE.md](../../CLAUDE.md#hard-invariants-never-violate)
+- Invariants (tenant isolation) → [../../AGENTS.md](../../AGENTS.md), [../../CLAUDE.md](../../CLAUDE.md)
 - Decisions → [../DECISIONS.md](../DECISIONS.md) (ADR-3, ADR-6)
 
 ## Out of scope

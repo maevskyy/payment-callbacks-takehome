@@ -31,7 +31,7 @@ cross-cutting concerns every later module relies on.
 
 ## References
 
-- Invariants → [../../CLAUDE.md](../../CLAUDE.md#hard-invariants-never-violate)
+- Invariants → [../../AGENTS.md](../../AGENTS.md), [../../CLAUDE.md](../../CLAUDE.md)
 - Data model → [../ARCHITECTURE.md](../ARCHITECTURE.md#data-model)
 - Error format → [../API.md](../API.md#error-format)
 - Decisions → [../DECISIONS.md](../DECISIONS.md) (ADR-1, ADR-2, ADR-7)
