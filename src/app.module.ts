@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { CommonModule } from './common/common.module';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware';
+import { IdentityModule } from './identity/identity.module';
 import { PersistenceModule } from './persistence/persistence.module';
 
 @Module({
@@ -22,6 +23,7 @@ import { PersistenceModule } from './persistence/persistence.module';
     }),
     CommonModule,
     PersistenceModule,
+    IdentityModule,
   ],
   controllers: [AppController],
 })
